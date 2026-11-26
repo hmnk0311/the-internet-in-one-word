@@ -42,13 +42,17 @@ fixed word to /output/entry.txt (or to $MAKEFUN_OUTPUT_DIR/entry.txt
 when that variable is set, which is how it is run locally).
 """
 
-TEXT = "feral\n"
+WORD = "feral"
+TEXT = WORD + "\n"
 
 import os
 from pathlib import Path
 
 
 def main() -> None:
+    # One word, one line, nothing else: the gate allows 1-30 characters
+    # and the judge compares the word alone, so the file is exactly
+    # the word plus its trailing newline (6 characters in total).
     os.umask(0o022)
     out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     out_dir.mkdir(parents=True, exist_ok=True)
